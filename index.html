@@ -126,27 +126,26 @@
   <div class="header-row">
     <div class="guide-label">Column guide</div>
     <div class="cols-row">
-      <div class="col-item" onmouseenter="show(this,'Total limit','Licensed seats per institute · as of May 2026 · updated monthly')" onmouseleave="reset(this)">
+      <div class="col-item" onmouseenter="show(this,'Total limit','Licensed users per institute as of 1st of current month')" onmouseleave="reset(this)">
         <span class="col-name">Total limit</span><span class="icon">i</span>
       </div>
-      <div class="col-item" onmouseenter="show(this,'Total users','Enabled + disabled + invited · synced on 1, 7, 14, 21, 28 of each month')" onmouseleave="reset(this)">
+      <div class="col-item" onmouseenter="show(this,'Total users','Users with status Enabled, Disabled, or Invited · synced on 1, 8, 15, 22, 29 of every month')" onmouseleave="reset(this)">
         <span class="col-name">Total users</span><span class="icon">i</span>
       </div>
-      <div class="col-item" onmouseenter="show(this,'Enabled users','Active-status users only · synced on 1, 7, 14, 21, 28 of each month')" onmouseleave="reset(this)">
+      <div class="col-item" onmouseenter="show(this,'Enabled users','Users with status Enabled · synced on 1, 8, 15, 22, 29 of every month')" onmouseleave="reset(this)">
         <span class="col-name">Enabled users</span><span class="icon">i</span>
       </div>
-      <div class="col-item" onmouseenter="show(this,'Active (prev. month)','Users who performed any action last month — includes currently disabled users · updated monthly')" onmouseleave="reset(this)">
+      <div class="col-item" onmouseenter="show(this,'Active (prev. month)','Users with status Enabled, Disabled, or Deleted who performed any action last month · updated monthly')" onmouseleave="reset(this)">
         <span class="col-name">Active (prev. month)</span><span class="icon">i</span>
       </div>
-      <div class="col-item" onmouseenter="show(this,'No activity (prev. month)','Enabled users with zero actions last month · updated monthly')" onmouseleave="reset(this)">
+      <div class="col-item" onmouseenter="show(this,'No activity (prev. month)','Enabled users who performed zero actions last month · updated monthly')" onmouseleave="reset(this)">
         <span class="col-name">No activity (prev. month)</span><span class="icon">i</span>
       </div>
-      <div class="col-item" onmouseenter="show(this,'Dormant users','No action in 2+ years, or never acted since joining · Jun 2026 data pending')" onmouseleave="reset(this)">
+      <div class="col-item" onmouseenter="show(this,'Dormant users','Enabled users who did not perform any action in last 2 years, or performed their first action in current month · updated monthly')" onmouseleave="reset(this)">
         <span class="col-name">Dormant users</span><span class="icon">i</span>
       </div>
     </div>
   </div>
-
   <div class="def-row" id="panel">
     <span class="dot"></span>
     <span class="placeholder">Hover any column to see its definition</span>
