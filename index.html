@@ -2,71 +2,58 @@
 <html>
 <head>
 <style>
-  body { margin: 0; font-family: Arial, sans-serif; background: transparent; }
-  .guide { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 8px 12px; background: #f5f7fa; border: 1px solid #dde1e7; border-radius: 6px; }
-  .item { display: inline-flex; align-items: center; gap: 5px; position: relative; }
-  .col-name { font-size: 12px; font-weight: 600; color: #333; }
-  .icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 14px; height: 14px; border-radius: 50%;
-    background: #1a3a5c; color: white;
-    font-size: 9px; font-weight: bold; cursor: pointer;
-    border: none; flex-shrink: 0;
-  }
-  .tooltip {
-    display: none; position: absolute;
-    top: calc(100% + 6px); left: 0;
-    background: white; border: 1px solid #ccc;
-    border-radius: 6px; padding: 8px 10px;
-    width: 210px; font-size: 11px; color: #444;
-    line-height: 1.5; z-index: 999;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .tooltip b { display: block; font-size: 11px; color: #1a3a5c; margin-bottom: 3px; }
-  .item:hover .tooltip { display: block; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: transparent; padding: 8px 12px; }
+  .icons-row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin-bottom: 8px; }
   .label { font-size: 11px; color: #888; margin-right: 4px; }
+  .item { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; padding: 3px 6px; border-radius: 4px; transition: background 0.15s; }
+  .item:hover { background: #eef2f7; }
+  .item.active { background: #e0e9f5; }
+  .col-name { font-size: 12px; font-weight: 600; color: #333; }
+  .icon { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; background: #1a3a5c; color: white; font-size: 9px; font-weight: bold; flex-shrink: 0; }
+  .def-panel { background: #f5f7fa; border: 1px solid #dde1e7; border-radius: 6px; padding: 8px 12px; min-height: 44px; display: flex; align-items: center; gap: 10px; }
+  .def-panel .def-col { font-size: 12px; font-weight: 700; color: #1a3a5c; white-space: nowrap; }
+  .def-panel .def-text { font-size: 12px; color: #555; line-height: 1.5; }
+  .def-panel .placeholder { font-size: 12px; color: #aaa; font-style: italic; }
+  .divider { color: #ccc; margin: 0 6px; }
 </style>
 </head>
 <body>
-<div class="guide">
+
+<div class="icons-row">
   <span class="label">Column guide →</span>
-
-  <div class="item">
-    <span class="col-name">Total limit</span>
-    <span class="icon">i</span>
-    <div class="tooltip"><b>Total limit</b>Licensed seats per institute · updated monthly · current as of May 2026</div>
+  <div class="item" onmouseenter="show('Total limit','Licensed seats per institute · updated monthly · current as of May 2026')" onmouseleave="reset()">
+    <span class="col-name">Total limit</span><span class="icon">i</span>
   </div>
-
-  <div class="item">
-    <span class="col-name">Total users</span>
-    <span class="icon">i</span>
-    <div class="tooltip"><b>Total users</b>Enabled + disabled + invited · synced on 1, 7, 14, 21, 28 of each month</div>
+  <div class="item" onmouseenter="show('Total users','Enabled + disabled + invited · synced on 1, 7, 14, 21, 28 of each month')" onmouseleave="reset()">
+    <span class="col-name">Total users</span><span class="icon">i</span>
   </div>
-
-  <div class="item">
-    <span class="col-name">Enabled users</span>
-    <span class="icon">i</span>
-    <div class="tooltip"><b>Enabled users</b>Active-status users only · synced on 1, 7, 14, 21, 28 of each month</div>
+  <div class="item" onmouseenter="show('Enabled users','Active-status users only · synced on 1, 7, 14, 21, 28 of each month')" onmouseleave="reset()">
+    <span class="col-name">Enabled users</span><span class="icon">i</span>
   </div>
-
-  <div class="item">
-    <span class="col-name">Active (prev. month)</span>
-    <span class="icon">i</span>
-    <div class="tooltip"><b>Active (prev. month)</b>Any action last month — includes currently disabled users · updated monthly</div>
+  <div class="item" onmouseenter="show('Active (prev. month)','Users who performed any action last month — includes currently disabled users · updated monthly')" onmouseleave="reset()">
+    <span class="col-name">Active (prev. month)</span><span class="icon">i</span>
   </div>
-
-  <div class="item">
-    <span class="col-name">No activity (prev. month)</span>
-    <span class="icon">i</span>
-    <div class="tooltip"><b>No activity (prev. month)</b>Enabled users with zero actions last month · updated monthly</div>
+  <div class="item" onmouseenter="show('No activity (prev. month)','Enabled users with zero actions last month · updated monthly')" onmouseleave="reset()">
+    <span class="col-name">No activity (prev. month)</span><span class="icon">i</span>
   </div>
-
-  <div class="item">
-    <span class="col-name">Dormant users</span>
-    <span class="icon">i</span>
-    <div class="tooltip"><b>Dormant users</b>No action in 2+ years, or never acted since joining · Jun 2026 data pending</div>
+  <div class="item" onmouseenter="show('Dormant users','No action in 2+ years, or never acted since joining · Jun 2026 data pending')" onmouseleave="reset()">
+    <span class="col-name">Dormant users</span><span class="icon">i</span>
   </div>
-
 </div>
+
+<div class="def-panel" id="panel">
+  <span class="placeholder">Hover a column name to see its definition</span>
+</div>
+
+<script>
+  function show(name, def) {
+    document.getElementById('panel').innerHTML =
+      '<span class="def-col">' + name + '</span><span class="divider">|</span><span class="def-text">' + def + '</span>';
+  }
+  function reset() {
+    document.getElementById('panel').innerHTML = '<span class="placeholder">Hover a column name to see its definition</span>';
+  }
+</script>
 </body>
 </html>
