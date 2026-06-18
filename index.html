@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { margin: 0; font-family: Arial, sans-serif; background: transparent; }
+  .guide { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 8px 12px; background: #f5f7fa; border: 1px solid #dde1e7; border-radius: 6px; }
+  .item { display: inline-flex; align-items: center; gap: 5px; position: relative; }
+  .col-name { font-size: 12px; font-weight: 600; color: #333; }
+  .icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #1a3a5c; color: white;
+    font-size: 9px; font-weight: bold; cursor: pointer;
+    border: none; flex-shrink: 0;
+  }
+  .tooltip {
+    display: none; position: absolute;
+    top: calc(100% + 6px); left: 0;
+    background: white; border: 1px solid #ccc;
+    border-radius: 6px; padding: 8px 10px;
+    width: 210px; font-size: 11px; color: #444;
+    line-height: 1.5; z-index: 999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .tooltip b { display: block; font-size: 11px; color: #1a3a5c; margin-bottom: 3px; }
+  .item:hover .tooltip { display: block; }
+  .label { font-size: 11px; color: #888; margin-right: 4px; }
+</style>
+</head>
+<body>
+<div class="guide">
+  <span class="label">Column guide →</span>
+
+  <div class="item">
+    <span class="col-name">Total limit</span>
+    <span class="icon">i</span>
+    <div class="tooltip"><b>Total limit</b>Licensed seats per institute · updated monthly · current as of May 2026</div>
+  </div>
+
+  <div class="item">
+    <span class="col-name">Total users</span>
+    <span class="icon">i</span>
+    <div class="tooltip"><b>Total users</b>Enabled + disabled + invited · synced on 1, 7, 14, 21, 28 of each month</div>
+  </div>
+
+  <div class="item">
+    <span class="col-name">Enabled users</span>
+    <span class="icon">i</span>
+    <div class="tooltip"><b>Enabled users</b>Active-status users only · synced on 1, 7, 14, 21, 28 of each month</div>
+  </div>
+
+  <div class="item">
+    <span class="col-name">Active (prev. month)</span>
+    <span class="icon">i</span>
+    <div class="tooltip"><b>Active (prev. month)</b>Any action last month — includes currently disabled users · updated monthly</div>
+  </div>
+
+  <div class="item">
+    <span class="col-name">No activity (prev. month)</span>
+    <span class="icon">i</span>
+    <div class="tooltip"><b>No activity (prev. month)</b>Enabled users with zero actions last month · updated monthly</div>
+  </div>
+
+  <div class="item">
+    <span class="col-name">Dormant users</span>
+    <span class="icon">i</span>
+    <div class="tooltip"><b>Dormant users</b>No action in 2+ years, or never acted since joining · Jun 2026 data pending</div>
+  </div>
+
+</div>
+</body>
+</html>
