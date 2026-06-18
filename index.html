@@ -4,119 +4,24 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: transparent; width: 100%; overflow: hidden; padding: 0; }
-
   .wrapper { border: 1px solid #dde3ed; border-radius: 8px; overflow: hidden; background: #fff; }
-
-  .header-row {
-    display: flex;
-    align-items: stretch;
-    background: #f0f3f8;
-    border-bottom: 1px solid #dde3ed;
-  }
-
-  .guide-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #7a8499;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 10px 14px;
-    border-right: 1px solid #dde3ed;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    background: #e8ecf4;
-  }
-
-  .cols-row {
-    display: flex;
-    flex: 1;
-    align-items: stretch;
-  }
-
-  .col-item {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    padding: 10px 6px;
-    cursor: pointer;
-    border-right: 1px solid #dde3ed;
-    transition: background 0.15s;
-    position: relative;
-  }
+  .header-row { display: flex; align-items: stretch; background: #f0f3f8; border-bottom: 1px solid #dde3ed; }
+  .guide-label { font-size: 11px; font-weight: 600; color: #7a8499; letter-spacing: 0.05em; text-transform: uppercase; padding: 10px 14px; border-right: 1px solid #dde3ed; white-space: nowrap; display: flex; align-items: center; background: #e8ecf4; }
+  .cols-row { display: flex; flex: 1; align-items: stretch; }
+  .col-item { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 10px 6px; cursor: pointer; border-right: 1px solid #dde3ed; transition: background 0.15s; }
   .col-item:last-child { border-right: none; }
   .col-item:hover { background: #e2e9f5; }
   .col-item.active { background: #1a3a5c; }
   .col-item.active .col-name { color: #fff; }
-  .col-item.active .icon { background: rgba(255,255,255,0.25); color: #fff; border-color: rgba(255,255,255,0.4); }
-
-  .col-name {
-    font-size: 12px;
-    font-weight: 600;
-    color: #2c3e5c;
-    white-space: nowrap;
-    text-align: center;
-  }
-
-  .icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: #1a3a5c;
-    color: white;
-    font-size: 9px;
-    font-weight: 700;
-    flex-shrink: 0;
-    border: 1px solid transparent;
-  }
-
-  .def-row {
-    padding: 10px 16px;
-    min-height: 40px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #fff;
-  }
-
-  .def-col {
-    font-size: 12px;
-    font-weight: 700;
-    color: #1a3a5c;
-    white-space: nowrap;
-  }
-
-  .divider {
-    width: 1px;
-    height: 16px;
-    background: #cdd3e0;
-    flex-shrink: 0;
-  }
-
-  .def-text {
-    font-size: 12px;
-    color: #4a5568;
-    line-height: 1.5;
-  }
-
-  .placeholder {
-    font-size: 12px;
-    color: #b0b8cc;
-    font-style: italic;
-  }
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #b0b8cc;
-    flex-shrink: 0;
-  }
+  .col-item.active .icon { background: rgba(255,255,255,0.25); color: #fff; }
+  .col-name { font-size: 12px; font-weight: 600; color: #2c3e5c; white-space: nowrap; text-align: center; }
+  .icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: #1a3a5c; color: white; font-size: 9px; font-weight: 700; flex-shrink: 0; }
+  .def-row { padding: 10px 16px; min-height: 40px; display: flex; align-items: center; gap: 10px; background: #fff; }
+  .def-col { font-size: 12px; font-weight: 700; color: #1a3a5c; white-space: nowrap; }
+  .divider { width: 1px; height: 16px; background: #cdd3e0; flex-shrink: 0; }
+  .def-text { font-size: 12px; color: #4a5568; line-height: 1.5; }
+  .placeholder { font-size: 12px; color: #b0b8cc; font-style: italic; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #b0b8cc; flex-shrink: 0; }
   .dot.active { background: #1a3a5c; }
 </style>
 </head>
@@ -135,13 +40,13 @@
       <div class="col-item" onmouseenter="show(this,'Enabled users','Users with status Enabled · synced on 1, 8, 15, 22, 29 of every month')" onmouseleave="reset(this)">
         <span class="col-name">Enabled users</span><span class="icon">i</span>
       </div>
-      <div class="col-item" onmouseenter="show(this,'Active (prev. month)','Users with status Enabled, Disabled, or Deleted who performed any action last month · updated monthly')" onmouseleave="reset(this)">
+      <div class="col-item" onmouseenter="show(this,'Active (prev. month)','Users with status Enabled, Disabled, or Deleted who performed any action in last month · updated monthly')" onmouseleave="reset(this)">
         <span class="col-name">Active (prev. month)</span><span class="icon">i</span>
       </div>
-      <div class="col-item" onmouseenter="show(this,'No activity (prev. month)','Enabled users who performed zero actions last month · updated monthly')" onmouseleave="reset(this)">
+      <div class="col-item" onmouseenter="show(this,'No activity (prev. month)','Users with status Enabled who performed zero actions in last month · updated monthly')" onmouseleave="reset(this)">
         <span class="col-name">No activity (prev. month)</span><span class="icon">i</span>
       </div>
-      <div class="col-item" onmouseenter="show(this,'Dormant users','Enabled users who did not perform any action in last 2 years, or performed their first action in current month · updated monthly')" onmouseleave="reset(this)">
+      <div class="col-item" onmouseenter="show(this,'Dormant users','Users with status Enabled who did not perform any action in last 2 years, or performed first action in current month · updated monthly')" onmouseleave="reset(this)">
         <span class="col-name">Dormant users</span><span class="icon">i</span>
       </div>
     </div>
