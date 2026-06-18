@@ -4,12 +4,11 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Arial, sans-serif; background: transparent; padding: 8px 12px; width: 100%; overflow: hidden; }
-  .icons-row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin-bottom: 8px; width: 100%; }
-  .label { font-size: 11px; color: #888; margin-right: 4px; }
+  .icons-row { display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; margin-bottom: 8px; width: 100%; }
+  .label { font-size: 11px; color: #888; white-space: nowrap; margin-right: 8px; }
   .item { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; padding: 3px 6px; border-radius: 4px; transition: background 0.15s; }
   .item:hover { background: #eef2f7; }
-  .item.active { background: #e0e9f5; }
-  .col-name { font-size: 12px; font-weight: 600; color: #333; }
+  .col-name { font-size: 12px; font-weight: 600; color: #333; white-space: nowrap; }
   .icon { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; background: #1a3a5c; color: white; font-size: 9px; font-weight: bold; flex-shrink: 0; }
   .def-panel { background: #f5f7fa; border: 1px solid #dde1e7; border-radius: 6px; padding: 8px 12px; min-height: 44px; display: flex; align-items: center; gap: 10px; width: 100%; }
   .def-panel .def-col { font-size: 12px; font-weight: 700; color: #1a3a5c; white-space: nowrap; }
