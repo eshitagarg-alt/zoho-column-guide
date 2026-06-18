@@ -3,55 +3,166 @@
 <head>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Arial, sans-serif; background: transparent; padding: 8px 12px; width: 100%; overflow: hidden; }
-  .icons-row { display: flex; flex-wrap: nowrap; align-items: center; margin-bottom: 8px; width: 100%; }
-  .label { font-size: 11px; color: #888; white-space: nowrap; min-width: 90px; }
-  .item { display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; padding: 3px 6px; border-radius: 4px; transition: background 0.15s; flex: 1; }
-  .item:hover { background: #eef2f7; }
-  .col-name { font-size: 12px; font-weight: 600; color: #333; white-space: nowrap; }
-  .icon { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; background: #1a3a5c; color: white; font-size: 9px; font-weight: bold; flex-shrink: 0; }
-  .def-panel { background: #f5f7fa; border: 1px solid #dde1e7; border-radius: 6px; padding: 8px 12px; min-height: 44px; display: flex; align-items: center; gap: 10px; width: 100%; }
-  .def-col { font-size: 12px; font-weight: 700; color: #1a3a5c; white-space: nowrap; }
-  .def-text { font-size: 12px; color: #555; line-height: 1.5; }
-  .placeholder { font-size: 12px; color: #aaa; font-style: italic; }
-  .divider { color: #ccc; margin: 0 6px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: transparent; width: 100%; overflow: hidden; padding: 0; }
+
+  .wrapper { border: 1px solid #dde3ed; border-radius: 8px; overflow: hidden; background: #fff; }
+
+  .header-row {
+    display: flex;
+    align-items: stretch;
+    background: #f0f3f8;
+    border-bottom: 1px solid #dde3ed;
+  }
+
+  .guide-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #7a8499;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border-right: 1px solid #dde3ed;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    background: #e8ecf4;
+  }
+
+  .cols-row {
+    display: flex;
+    flex: 1;
+    align-items: stretch;
+  }
+
+  .col-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 6px;
+    cursor: pointer;
+    border-right: 1px solid #dde3ed;
+    transition: background 0.15s;
+    position: relative;
+  }
+  .col-item:last-child { border-right: none; }
+  .col-item:hover { background: #e2e9f5; }
+  .col-item.active { background: #1a3a5c; }
+  .col-item.active .col-name { color: #fff; }
+  .col-item.active .icon { background: rgba(255,255,255,0.25); color: #fff; border-color: rgba(255,255,255,0.4); }
+
+  .col-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2c3e5c;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #1a3a5c;
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    flex-shrink: 0;
+    border: 1px solid transparent;
+  }
+
+  .def-row {
+    padding: 10px 16px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+  }
+
+  .def-col {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a3a5c;
+    white-space: nowrap;
+  }
+
+  .divider {
+    width: 1px;
+    height: 16px;
+    background: #cdd3e0;
+    flex-shrink: 0;
+  }
+
+  .def-text {
+    font-size: 12px;
+    color: #4a5568;
+    line-height: 1.5;
+  }
+
+  .placeholder {
+    font-size: 12px;
+    color: #b0b8cc;
+    font-style: italic;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #b0b8cc;
+    flex-shrink: 0;
+  }
+  .dot.active { background: #1a3a5c; }
 </style>
 </head>
 <body>
 
-<div class="icons-row">
-  <span class="label">Column guide →</span>
-  <div class="item" onmouseenter="show('Total limit','Licensed seats per institute · updated monthly · current as of May 2026')" onmouseleave="reset()">
-    <span class="col-name">Total limit</span><span class="icon">i</span>
+<div class="wrapper">
+  <div class="header-row">
+    <div class="guide-label">Column guide</div>
+    <div class="cols-row">
+      <div class="col-item" onmouseenter="show(this,'Total limit','Licensed seats per institute · as of May 2026 · updated monthly')" onmouseleave="reset(this)">
+        <span class="col-name">Total limit</span><span class="icon">i</span>
+      </div>
+      <div class="col-item" onmouseenter="show(this,'Total users','Enabled + disabled + invited · synced on 1, 7, 14, 21, 28 of each month')" onmouseleave="reset(this)">
+        <span class="col-name">Total users</span><span class="icon">i</span>
+      </div>
+      <div class="col-item" onmouseenter="show(this,'Enabled users','Active-status users only · synced on 1, 7, 14, 21, 28 of each month')" onmouseleave="reset(this)">
+        <span class="col-name">Enabled users</span><span class="icon">i</span>
+      </div>
+      <div class="col-item" onmouseenter="show(this,'Active (prev. month)','Users who performed any action last month — includes currently disabled users · updated monthly')" onmouseleave="reset(this)">
+        <span class="col-name">Active (prev. month)</span><span class="icon">i</span>
+      </div>
+      <div class="col-item" onmouseenter="show(this,'No activity (prev. month)','Enabled users with zero actions last month · updated monthly')" onmouseleave="reset(this)">
+        <span class="col-name">No activity (prev. month)</span><span class="icon">i</span>
+      </div>
+      <div class="col-item" onmouseenter="show(this,'Dormant users','No action in 2+ years, or never acted since joining · Jun 2026 data pending')" onmouseleave="reset(this)">
+        <span class="col-name">Dormant users</span><span class="icon">i</span>
+      </div>
+    </div>
   </div>
-  <div class="item" onmouseenter="show('Total users','Enabled + disabled + invited · synced on 1, 7, 14, 21, 28 of each month')" onmouseleave="reset()">
-    <span class="col-name">Total users</span><span class="icon">i</span>
-  </div>
-  <div class="item" onmouseenter="show('Enabled users','Active-status users only · synced on 1, 7, 14, 21, 28 of each month')" onmouseleave="reset()">
-    <span class="col-name">Enabled users</span><span class="icon">i</span>
-  </div>
-  <div class="item" onmouseenter="show('Active (prev. month)','Users who performed any action last month — includes currently disabled users · updated monthly')" onmouseleave="reset()">
-    <span class="col-name">Active (prev. month)</span><span class="icon">i</span>
-  </div>
-  <div class="item" onmouseenter="show('No activity (prev. month)','Enabled users with zero actions last month · updated monthly')" onmouseleave="reset()">
-    <span class="col-name">No activity (prev. month)</span><span class="icon">i</span>
-  </div>
-  <div class="item" onmouseenter="show('Dormant users','No action in 2+ years, or never acted since joining · Jun 2026 data pending')" onmouseleave="reset()">
-    <span class="col-name">Dormant users</span><span class="icon">i</span>
-  </div>
-</div>
 
-<div class="def-panel" id="panel">
-  <span class="placeholder">Hover a column name to see its definition</span>
+  <div class="def-row" id="panel">
+    <span class="dot"></span>
+    <span class="placeholder">Hover any column to see its definition</span>
+  </div>
 </div>
 
 <script>
-  function show(name, def) {
+  function show(el, name, def) {
+    el.classList.add('active');
     document.getElementById('panel').innerHTML =
-      '<span class="def-col">' + name + '</span><span class="divider">|</span><span class="def-text">' + def + '</span>';
+      '<span class="dot active"></span><span class="def-col">' + name + '</span><div class="divider"></div><span class="def-text">' + def + '</span>';
   }
-  function reset() {
-    document.getElementById('panel').innerHTML = '<span class="placeholder">Hover a column name to see its definition</span>';
+  function reset(el) {
+    el.classList.remove('active');
+    document.getElementById('panel').innerHTML =
+      '<span class="dot"></span><span class="placeholder">Hover any column to see its definition</span>';
   }
 </script>
 </body>
